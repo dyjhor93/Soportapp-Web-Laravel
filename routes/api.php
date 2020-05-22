@@ -12,7 +12,15 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'AuthController@user');
     });
 });
-
+Route::group(['prefix' => 'client'], function () {
+    Route::post('crear', 'ClientController@crear');
+    //Route::post('signup', 'AuthController@signup');
+  
+    Route::group(['middleware' => 'auth:api'], function() {
+        Route::get('logout', 'AuthController@logout');
+        Route::get('user', 'AuthController@user');
+    });
+});
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

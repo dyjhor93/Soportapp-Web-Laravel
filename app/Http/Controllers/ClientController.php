@@ -12,9 +12,24 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function crear(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string',
+            'nic'    => 'required|string|unique:client',
+        ]);
+        $client = new Client([
+            'name'     => $request->name,
+            'nic'    => $request->nic,
+        ]);
+        $client->save();
+        return response()->json([
+            'message' => 'Successfully created client!'], 201);
+    }
     public function index()
     {
-        //
+        
     }
 
     /**
