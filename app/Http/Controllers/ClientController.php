@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\ClientCrearRequest;
 use App\Client;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -13,12 +13,9 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function crear(Request $request)
+    public function crear(ClientCrearRequest $request)
     {
-        $request->validate([
-            'name'     => 'required|string',
-            'nic'    => 'required|string|unique:client',
-        ]);
+        $validated = $request->validated();
         $client = new Client([
             'name'     => $request->name,
             'nic'    => $request->nic,
