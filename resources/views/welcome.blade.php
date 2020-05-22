@@ -86,7 +86,7 @@
 
                 <div class="links">
                     <a href="{{ url('/download') }}">Download App &dArr;</a>
-                    <a href="{{ url('/myadmin') }}">DB Admin</a>
+                    <!--<a href="{{ url('/myadmin') }}">DB Admin</a>-->
                 </div>
             </div>
         </div>
