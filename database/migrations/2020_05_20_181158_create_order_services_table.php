@@ -20,8 +20,8 @@ class CreateOrderServicesTable extends Migration
             $table->timestamps();
 
             $table->primary('os');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('client_nic')->references('nic')->on('clients')->onDelete('cascade');
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //$table->foreign('client_nic')->references('nic')->on('clients')->onDelete('cascade');
         });
     }
 

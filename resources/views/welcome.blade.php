@@ -80,14 +80,17 @@
             @endif
 
             <div class="content">
+            
                 <div class="title m-b-md">
                     SoportApp
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/download') }}">Download App &dArr;</a>
+                    <a href="{{ url('/download') }}">Download App 📲</a>
+                    <a href="{{ url('/search') }}">Buscar evidencias &#128269;</a>
                     <!--<a href="{{ url('/myadmin') }}">DB Admin</a>-->
                 </div>
+                
             </div>
         </div>
     </body>

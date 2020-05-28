@@ -20,6 +20,8 @@ class CreateClientsTable extends Migration
 
             $table->primary('nic');
         });
+
+        
     }
 
     /**

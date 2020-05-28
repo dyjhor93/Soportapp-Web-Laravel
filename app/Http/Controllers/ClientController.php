@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\ClientCrearRequest;
+
+use App\Http\Requests\ClientCreateRequest;
 use App\Client;
+
 //use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -12,21 +14,9 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function crear(ClientCrearRequest $request)
-    {
-        $validated = $request->validated();
-        $client = new Client([
-            'name'     => $request->name,
-            'nic'    => $request->nic,
-        ]);
-        $client->save();
-        return response()->json([
-            'message' => 'Successfully created client!'], 201);
-    }
     public function index()
     {
-        
+        return response()->json(['client'=>'clientList','data'=>Client::all()], 200);
     }
 
     /**
@@ -45,11 +35,17 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientCreateRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $client = new Client([
+            'name'     => $request->name,
+            'nic'    => $request->nic,
+        ]);
+        $client->save();
+        return response()->json([
+            'message' => 'Successfully created client!'], 201);
     }
-
     /**
      * Display the specified resource.
      *
@@ -58,7 +54,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return new Client($client);
     }
 
     /**
@@ -92,6 +88,6 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
     }
+
 }

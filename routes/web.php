@@ -19,3 +19,19 @@ Route::get('/', function () {
 Route::get('/download', function(){
 	return view('download');
 });
+
+Route::get('/testapimaps', function(){
+	return view('testapimaps');
+});
+
+Route::get('/search', function(){
+	return view('search');
+});
+
+Route::get('/evidencias', function(){
+	return view('evidencias');
+});
+Route::get('/search/{nic}-{os}','OrderServiceController@viewer');
+Route::post('search', 'OrderServiceController@search');
+
+

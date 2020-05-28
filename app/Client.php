@@ -9,4 +9,5 @@ class Client extends Model
     protected $fillable = [
         'nic', 'name', 
     ];
+
 }
