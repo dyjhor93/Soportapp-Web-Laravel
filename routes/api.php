@@ -12,6 +12,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'AuthController@user');
     });
 });
+
 Route::group(['prefix' => 'client'], function () {
     Route::get('/', 'ClientController@index');
     Route::post('store', 'ClientController@store');
@@ -24,11 +25,5 @@ Route::group(['prefix' => 'os'], function () {
     Route::post('store', 'OrderServiceController@store');
     Route::post('upload', 'OrderServiceController@upload');
 });
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::get('/', function () {
-    $hw = ['auth'=>'api autenticacion de los usuarios','client'=>'api clientes','os'=>'api ordenes de servicio'];
-    return $hw;
-});
+

@@ -45,10 +45,12 @@ class OrderServiceController extends Controller
             'user_id'    => 1,
             
         ]);
+        if($os->save()){
+            $hw = ['message'=>'OS guardada exitosamente',];
+        }else{
+            $hw = ['message'=>'Error guardando la OS',];
+        }
         
-        $hw = [
-            'message'=>$os->save(),
-        ];
         return $hw;
     }
 
@@ -131,60 +133,16 @@ class OrderServiceController extends Controller
             return ["message"=>"os is required"];
         }
         
-        /*
-        $osdata = new OrderService([
-            'os'     => $os,
-            'client_nic'    => $nic,
-            'user_id'    => 1,
-            
-        ]);
-        *//*
-        if ($request->has('imagename')) {
-            $imagename = $request->imagename;
-        }else{
-            return ["imagename"=>"imagename is required"];
-        }*/
-/*
-        if ($request->has('imagestring')) {
-            $path=storage_path("/app/public/evidencias/".$nic."/".$os."/");
-            $result = self::saveBase64ToImage(
-                $request->imagestring,
-                $path,
-                $imagename
-            );
-        }else{
-            return ["imagestring"=>"imagestring is required and must be Base64"];
-        }
-        }*/
         if ($request->hasFile('pic')) {
             $image = $request->file("pic");
             $image->move(storage_path("/app/public/evidencias/".$nic."/".$os."/"),$image->getClientOriginalName());
         }else{
             return ["message"=>"pic is required"];
         }
-        //
-        //$nombre = $image->getClientOriginalName();
-        //
-        return ["message"=>"Guardado correctamente"];
+        
+        return ["message"=>"Evidencia subida correctamente"];
     }
-    /*
-    public function upload(UploadOSRequest $request)
-    {
-        $nic = $request->nic;
-        $os = $request->os;
-        $path = 'evidencias/'.$nic.'/'.$os.'/';
-        
-        Storage::makeDirectory($path);
-        $result = self::saveBase64ToImage(
-            $request->image,
-            $path,
-            $request->imagename
-        );
-        
-        $image = $request->file;
-        $image->move($path);
-        return ["image"=>$result];
-    }*/
+    
     public function search(Request $request){
         $q = $request->nic;
         $nic = OrderService::where('client_nic',$q)->orWhere('os',$q)->get();//

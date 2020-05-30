@@ -13,15 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@wellcome');
+
 Route::get('/download', function(){
 	return view('download');
-});
-
-Route::get('/testapimaps', function(){
-	return view('testapimaps');
 });
 
 Route::get('/search', function(){
@@ -35,3 +30,7 @@ Route::get('/search/{nic}-{os}','OrderServiceController@viewer');
 Route::post('search', 'OrderServiceController@search');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
