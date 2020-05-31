@@ -150,11 +150,16 @@ class OrderServiceController extends Controller
             return view('search')->withDetails($nic)->withQuery ( $q );
         else return view ('search')->withMessage('No item found '.$q);
     }
+
     public function viewer($nic,$os){
         $data =Storage::files('evidencias/'.$nic.'/'.$os);
         return view('search')->with('images', $data)->with('nic', $nic)->with('os', $os);
         //$path="/";
         //return ['dir'=>Storage::directories($path),'files'=>Storage::files($path)];
         //return $data;
+    }
+
+    public function listar(){
+        return view('listar')->withDetails(OrderService::all());
     }
 }

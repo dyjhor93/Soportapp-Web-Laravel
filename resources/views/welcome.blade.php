@@ -9,10 +9,11 @@
                 </div>
                 @auth
                 <div class="links">
-                    <a href="{{ url('/download') }}">Download App 📲</a>
-                    <a href="{{ url('/search') }}">Buscar evidencias &#128269;</a>
-                    <a href="{{ url('/evidencias') }}">Agregar evidencias ➕</a>
-                    <a href="{{ url('/myadmin') }}">DB Admin 💾</a>
+                    <a class="btn" href="{{ url('/download') }}">Download App 📲</a>
+                    <a class="btn" href="{{ url('/search') }}">Buscar evidencias &#128269;</a>
+                    <a class="btn" href="{{ url('/evidencias') }}">Agregar evidencias ➕</a>
+                    <a class="btn" href="{{ url('/myadmin') }}">DB Admin 💾</a>
+                    <a class="btn" href="{{ url('/listar') }}">Ver Lista OS 👁</a>
                 </div>
                 @else
                 <div class="links">

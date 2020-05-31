@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
@@ -50,6 +40,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'llave' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -64,6 +55,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $llave=$data['llave'];
+        if($llave!=null){
+            if(strcmp($data['llave'],"&EC@1%Fc34")!=0){
+                //return view ('auth.register')->withMessage('Clave invalida');
+                return new User;
+            }
+        }else{
+            return new User;
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

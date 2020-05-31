@@ -15,13 +15,16 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'usertest',
             'email' => 'usertest@soportapp.tk',
+            'role' => 'tecnico',
             'password' => Hash::make('123456789'),
         ]);
-        
+
         DB::table('users')->insert([
-            'name' => 'jhordy',
-            'email' => 'jhordy@soportapp.tk',
-            'password' => Hash::make('12345'),
+            'name' => 'admin',
+            'email' => 'admin@soportapp.tk',
+            'role' => 'admin',
+            'password' => Hash::make('Soportapp&EC@1%Fc34'),
         ]);
+        
     }
 }

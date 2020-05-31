@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@wellcome');
+Route::get('/', function(){
+	return view('welcome');
+});
 
 Route::get('/download', function(){
 	return view('download');
 });
+
+Route::get('/listar', 'OrderServiceController@listar');
 
 Route::get('/search', function(){
 	return view('search');

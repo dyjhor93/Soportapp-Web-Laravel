@@ -13,7 +13,6 @@ class AuthController extends Controller
 {
     public function signup(AuthSignupRequest $request)
     {
-        
         $request->validate([
             'name'     => 'required|string',
             'email'    => 'required|string|email|unique:users',
@@ -44,7 +43,6 @@ class AuthController extends Controller
         }
         $token->save();
         return response()->json([
-            'role' => $userRole,
             'access_token' => $tokenResult->accessToken,
             'token_type'   => 'Bearer',
             'expires_at'   => Carbon::parse(
