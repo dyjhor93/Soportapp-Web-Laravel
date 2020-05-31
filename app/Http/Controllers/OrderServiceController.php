@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\OrderService;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOSRequest;
@@ -139,10 +139,63 @@ class OrderServiceController extends Controller
         }else{
             return ["message"=>"pic is required"];
         }
-        
-        return ["message"=>"Evidencia subida correctamente"];
+        $newnic = OrderService::where('client_nic',$request->nic)->get();
+        if(count($newnic) == 0){
+            $newos = new OrderService([
+                'os'     => $os,
+                'client_nic'    => $nic,
+                'user_id'    => 1,
+                
+            ]);
+            if($newos->save()){
+                $msg = ['message'=>'Evidencia subida correctamente a una nueva OS',];
+            }else{
+                $msg = ['message'=>'Error guardando la OS en la base de datos',];
+            }
+            
+            return $msg;
+        }
+        $msg = 'Evidencia subida correctamente a la orden existente';
+        return $msg;
     }
-    
+    public function uploadweb(Request $request)
+    {
+        if ($request->has('nic')) {
+            $nic = $request->nic;
+        }else{
+            return view('evidencias')->withMessage('Nic es requirido');
+        }
+        if ($request->has('os')) {
+            $os = $request->os;
+        }else{
+            return view('evidencias')->withMessage('OS es requirido');
+        }
+        
+        if ($request->hasFile('pic')) {
+            $image = $request->file("pic");
+            $image->move(storage_path("/app/public/evidencias/".$nic."/".$os."/"),$image->getClientOriginalName());
+        }else{
+            return view('evidencias')->withMessage('Pic es requirido');
+        }
+        $newnic = OrderService::where('client_nic',$request->nic)->get();
+        if(count($newnic) == 0){
+            $newos = new OrderService([
+                'os'     => $os,
+                'client_nic'    => $nic,
+                'user_id'    => 1,
+                
+            ]);
+            if($newos->save()){
+                $msg = 'Evidencia subida correctamente a una nueva OS';
+            }else{
+                $msg = 'Error guardando la OS en la base de dato';
+            }
+            
+            return view('evidencias')->withMessage($msg);
+        }
+        $msg = 'Evidencia subida correctamente a la orden existente';
+        return view('evidencias')->withMessage($msg);
+    }
     public function search(Request $request){
         $q = $request->nic;
         $nic = OrderService::where('client_nic',$q)->orWhere('os',$q)->get();//
@@ -160,6 +213,26 @@ class OrderServiceController extends Controller
     }
 
     public function listar(){
-        return view('listar')->withDetails(OrderService::all());
+        if(Auth::user()){
+            if(strcmp(Auth::user()->role,"admin")==0){
+                return view('listar')->withDetails(OrderService::all());
+            }
+        }
+        return view('welcome')->withMessage('No tienes permiso para usar esa acción');
+        
+    }
+    public function delete($os){
+        if(Auth::user()){
+            if(strcmp(Auth::user()->role,"admin")==0){
+                if(OrderService::where('os',$os)->delete()){
+                    //return view('listar')->withMessage('message' => 'Eliminado OS '.$os);
+                    return redirect()->action('OrderServiceController@listar')->withMessage('Eliminado OS '.$os);
+                }else{
+                    //return view('listar')->withMessage('Algo ocurrio eliminando la OS '.$os);
+                    return redirect()->action('OrderServiceController@listar')->withMessage('Algo ocurrio eliminando la OS '.$os) ;
+                }
+            }
+        }
+        return view('welcome')->withMessage('No tienes permiso para usar esa acción');
     }
 }

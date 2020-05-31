@@ -41,6 +41,10 @@
                             <th>Nic</th>
                             <th>OS</th>
                             <th>Ver</th>
+                            @admin
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                            @endadmin
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +53,10 @@
                             <td>{{$nic->client_nic}}</td>
                             <td>{{$nic->os}}</td>
                             <td><a href="{{ URL('/search/'.$nic->client_nic.'-'.$nic->os )}}">👁</a></td>
+                            @admin
+                            <td><a href="{{ URL('/editos/'.$nic->client_nic.'-'.$nic->os )}}">✎</a></td>
+                            <td><a href="{{ URL('/deleteos/'.$nic->os )}}">🚮</a></td>
+                            @endadmin
                         </tr>
                         @endforeach
                     </tbody>
@@ -62,6 +70,9 @@
             @endauth
                 
                 <div class="links">
+                    @admin
+                    <a href="/listar">Back to list</a>
+                    @endadmin
                     <a href="/">Back to main</a>
                 </div>
             </div>

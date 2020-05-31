@@ -20,16 +20,18 @@ Route::get('/', function(){
 Route::get('/download', function(){
 	return view('download');
 });
-
 Route::get('/listar', 'OrderServiceController@listar');
 
 Route::get('/search', function(){
 	return view('search');
 });
 
+Route::post('/evidencias', 'OrderServiceController@uploadweb');
 Route::get('/evidencias', function(){
 	return view('evidencias');
 });
+Route::get('/editos/{nic}-{os}','OrderServiceController@editos');
+Route::get('/deleteos/{os}','OrderServiceController@delete');
 Route::get('/search/{nic}-{os}','OrderServiceController@viewer');
 Route::post('search', 'OrderServiceController@search');
 

@@ -30,6 +30,8 @@
                             <th>Nic</th>
                             <th>OS</th>
                             <th>Ver</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +40,8 @@
                             <td>{{$nic->client_nic}}</td>
                             <td>{{$nic->os}}</td>
                             <td><a href="{{ URL('/search/'.$nic->client_nic.'-'.$nic->os )}}">👁</a></td>
+                            <td><a href="{{ URL('/editos/'.$nic->client_nic.'-'.$nic->os )}}">✎</a></td>
+                            <td><a href="{{ URL('/deleteos/'.$nic->os )}}">🚮</a></td>
                         </tr>
                         @endforeach
                     </tbody>
