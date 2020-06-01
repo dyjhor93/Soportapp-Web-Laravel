@@ -15,9 +15,9 @@
                 @endif
             @auth
                 @if(isset($details))
-                    <h2>User Role details</h2>
+                    <h2>Detalles de usuario</h2>
                     <div class="form-group row">
-                    <label for="os" class="col-sm-2 col-form-label">OS</label>
+                    <label for="os" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
                       <input type="text" name="os" onkeyup="myFunction()" maxlength="15" class="form-control" id="os" placeholder="Buscar por correo">
                     </div>
@@ -88,7 +88,7 @@
                 
                 <div class="links">
                     <a href="/">Back to main</a>
-                    <a href="/user">Back to list</a>
+                    <!--<a href="/user">Back to list</a>-->
                 </div>
             </div>
         </div>

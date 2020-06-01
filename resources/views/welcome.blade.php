@@ -17,7 +17,7 @@
                     <a class="btn" href="{{ url('/evidencias') }}">Agregar evidencias ➕</a>
                     @admin
                     <a class="btn" href="{{ action('UserController@index') }}">Users 👥</a>
-                    <a class="btn" href="{{ url('/myadmin') }}">DB Admin 💾</a>👥
+                    <a class="btn" href="{{ url('/myadmin') }}">DB Admin 💾</a>
                     <a class="btn" href="{{ url('/listar') }}">Ver Lista OS 👁</a>
                     @endadmin
                 </div>
