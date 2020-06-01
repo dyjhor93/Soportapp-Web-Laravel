@@ -45,7 +45,9 @@
 
                 <div class="links">
                     <a href="/">Back to main</a>
-                    
+                    @admin
+                    <a href="/listar">Back to list</a>
+                    @endadmin
                 </div>
                 @else
                 <div class="links">

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreOSRequest;
 use App\Http\Requests\UploadOSRequest;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class OrderServiceController extends Controller
 {
@@ -60,9 +61,10 @@ class OrderServiceController extends Controller
      * @param  \App\OrderService  $orderService
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderService $orderService)
+    public function show($id)
     {
-        //
+        $orderService=OrderService::findOrFail($id);
+        return ['os'=>$orderService];
     }
 
     /**
@@ -71,9 +73,10 @@ class OrderServiceController extends Controller
      * @param  \App\OrderService  $orderService
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderService $orderService)
+    public function edit($id)
     {
-        //
+        $orderService=OrderService::findOrFail($id);
+        return view('os.edit',compact('orderService'));
     }
 
     /**
@@ -85,7 +88,33 @@ class OrderServiceController extends Controller
      */
     public function update(Request $request, OrderService $orderService)
     {
-        //
+        $validatedData = $request->validate([
+            'client_nic' => 'required||numeric',
+            'os' => 'required|numeric',
+        ]);
+        //DB::table('order_services')->where('id', '=', $request->id)->delete();
+        $order = OrderService::where('id',$request->id)->get();
+        if(count($order)==1){
+            if($order[0]->update(['client_nic' => $request->client_nic,
+        'os' => $request->os])){
+
+            //Storage::makeDirectory('evidencias/'.$request->client_nic.'/'.$request->os);
+            Storage::move('evidencias/'.$request->onic.'/'.$request->oos, 'evidencias/'.$request->client_nic.'/'.$request->os);
+
+            return view('listar')->withDetails($order)->withMessage('Se actualizo la orden de servicio');
+        }else{
+            return view('listar')->withDetails($order)->withMessage('No se pudo actualizar la orden de servicio ');
+        }
+        }
+        
+        return view('listar')->withMessage('No se pudo actualizar la orden de servicio ');
+        //->delete();
+        /*$orderService->user_id=1;
+        $orderService->client_nic = $request->client_nic;
+        $orderService->os = $request->os;
+        $orderService->save();*/
+        //OrderService::whereId($request->id)->update($validatedData);
+        
     }
 
     /**
@@ -235,4 +264,5 @@ class OrderServiceController extends Controller
         }
         return view('welcome')->withMessage('No tienes permiso para usar esa acción');
     }
+    
 }

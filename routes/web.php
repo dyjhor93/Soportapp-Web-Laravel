@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::resource('orderservice', 'OrderServiceController');
 Route::get('/', function(){
 	return view('welcome');
 });
@@ -30,7 +30,6 @@ Route::post('/evidencias', 'OrderServiceController@uploadweb');
 Route::get('/evidencias', function(){
 	return view('evidencias');
 });
-Route::get('/editos/{nic}-{os}','OrderServiceController@editos');
 Route::get('/deleteos/{os}','OrderServiceController@delete');
 Route::get('/search/{nic}-{os}','OrderServiceController@viewer');
 Route::post('search', 'OrderServiceController@search');

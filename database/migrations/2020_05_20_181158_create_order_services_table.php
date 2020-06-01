@@ -14,12 +14,13 @@ class CreateOrderServicesTable extends Migration
     public function up()
     {
         Schema::create('order_services', function (Blueprint $table) {
+            $table->id();
             $table->string('os')->unique();
             $table->string('client_nic');
-            $table->unsignedBigInteger('user_id');
+            $table->string('user_id');
             $table->timestamps();
 
-            $table->primary('os');
+            //$table->primary('os');
             //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             //$table->foreign('client_nic')->references('nic')->on('clients')->onDelete('cascade');
         });
