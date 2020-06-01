@@ -81,8 +81,10 @@
         <div class="text-center">
         <img class="image" src="http://soportapp.tk/storage/logo-eca.png" class="img-fluid text-center" alt="Responsive Logo">
         </div>
-        
-            @yield('content')
+        <div class="container">
+        @yield('content')
+        </div>
+            
         </main>
     </div>
 </body>

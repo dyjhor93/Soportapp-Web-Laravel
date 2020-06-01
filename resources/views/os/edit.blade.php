@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('content')<div class="card uper">
+@section('content')
+<div class="card uper">
   <div class="card-header">
     Edit Orden de servicio
   </div>
