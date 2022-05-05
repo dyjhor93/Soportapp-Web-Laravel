@@ -120,8 +120,7 @@
                 <div class="sliderr">
 			        <ul>
                         @foreach($images as $image)
-                        <!--href="http://soportapp.tk/storage/{{ $image }}"-->
-                        <img class="img" weight="100px" height="100px" src="http://soportapp.tk/storage/{{ $image }}" />
+                        <img class="img" weight="100px" height="100px" src="/storage/{{ $image }}" />
                         @endforeach
                     </ul>
 		        </div>

@@ -79,7 +79,7 @@
 
         <main class="py-4">
         <div class="text-center">
-        <img class="image" src="http://soportapp.tk/storage/logo-eca.png" class="img-fluid text-center" alt="Responsive Logo">
+        <img class="image" src="/storage/logo-eca.png" class="img-fluid text-center" alt="Responsive Logo">
         </div>
         <div class="container">
         @yield('content')

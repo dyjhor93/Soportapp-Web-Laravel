@@ -19,7 +19,7 @@
 			        <ul>
 				
                         @foreach($images as $image)
-                            <a href="http://soportapp.tk/storage/{{ $image }}"><img weight="100px" height="100px"  src="http://soportapp.tk/storage/{{ $image }}" /></a>
+                            <a href="/storage/{{ $image }}"><img weight="100px" height="100px"  src="/storage/{{ $image }}" /></a>
                         @endforeach
                     </ul>
 		        </div>
