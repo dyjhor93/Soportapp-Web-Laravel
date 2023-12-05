@@ -1,8 +1,6 @@
-@extends('layouts.app')
-@section('sidebar')
-    
-@endsection
-@section('content')
+<x-app-layout>
+
+
 <div class="card uper">
   <div class="card-header">
     Editar Usuario
@@ -47,4 +45,4 @@
                 </div>
   </div>
 </div>
-@endsection
+</x-app-layout>

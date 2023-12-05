@@ -1,6 +1,6 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
+
 <div class="card uper">
   <div class="card-header">
     Edit Orden de servicio
@@ -39,4 +39,4 @@
                 </div>
   </div>
 </div>
-@endsection
+</x-app-layout>

@@ -1,8 +1,6 @@
-@extends('layouts.app')
-@section('sidebar')
-    
-@endsection
-@section('content')
+<x-app-layout>
+
+
         <div class="flex-center position-ref full-height">
             
 
@@ -131,4 +129,4 @@
             }
         }
     </script>
-@endsection
+</x-app-layout>

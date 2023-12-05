@@ -1,6 +1,6 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('content')
+
             <div class="container">
             
                 <div class="title">
@@ -56,4 +56,4 @@
                 @endauth
             </div>
         </div>
-@endsection
+</x-app-layout>
