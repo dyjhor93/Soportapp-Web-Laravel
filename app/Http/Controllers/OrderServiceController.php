@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use App\OrderService;
+use App\Models\OrderService;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOSRequest;
 use App\Http\Requests\UploadOSRequest;
@@ -58,7 +58,7 @@ class OrderServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OrderService  $orderService
+     * @param  \App\Models\OrderService  $orderService
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -70,7 +70,7 @@ class OrderServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OrderService  $orderService
+     * @param  \App\Models\OrderService  $orderService
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -83,7 +83,7 @@ class OrderServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrderService  $orderService
+     * @param  \App\Models\OrderService  $orderService
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, OrderService $orderService)
@@ -120,7 +120,7 @@ class OrderServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrderService  $orderService
+     * @param  \App\Models\OrderService  $orderService
      * @return \Illuminate\Http\Response
      */
     public function destroy(OrderService $orderService)
